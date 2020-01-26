@@ -23,12 +23,17 @@ print("Expected hash with extension is: ", expectedVal.hexdigest())
 ###
 inputURL = "https://project1.ecen4133.org/elpa8934/lengthextension/api?token=785929c5bbf62fc65fde5855c61c28f7&command=SprinklersPowerOn"
 #pull out token
-token = "785929c5bbf62fc65fde5855c61c28f7"
+holder=inputURL.split('=')
+holder2=holder[1].split('&')
+holder2=holder2[0]
+print("Token", holder2)
+token = holder2
+commands=
 #pull out everything after first command=
 everythingElse = "SprinklersPowerOn"
 
 Hash = md5()
-Hash.update(unputIRL)
+Hash.update(inputURL)
 print("MD5 hash of inputURL is: ", Hash.hexdigest())
 ###
 
@@ -39,11 +44,11 @@ length_of_m = 8
 #set message length counter to the size of m plus the padding
 bits = (length_of_m + len(padding(length_of_m *8)))*8
 unlockCommand = "&command=UnlockSafes"
-modifiedURL = unputURL + token + unlockCommand
+modifiedURL = inputURL + token + unlockCommand
 ###
 
 #Prints only the modified URL
 ###
-print("Modified URL to modifiedURL)
+print("Modified URL to modifiedURL")
 ###
 

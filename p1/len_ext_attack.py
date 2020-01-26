@@ -28,27 +28,24 @@ holder2=holder[1].split('&')
 holder2=holder2[0]
 print("Token", holder2)
 token = holder2
-commands=
 #pull out everything after first command=
-everythingElse = "SprinklersPowerOn"
-
-Hash = md5()
-Hash.update(inputURL)
-print("MD5 hash of inputURL is: ", Hash.hexdigest())
+everythingElse = "&command=SprinklersPowerOn"
 ###
 
 #Modifies the URL so that it will execute the UnlockSafes command
 ###
-#Length 8 byte password
-length_of_m = 8
+#Length of (8 byte password || everythingElse)
+length_of_m = 16
 #set message length counter to the size of m plus the padding
 bits = (length_of_m + len(padding(length_of_m *8)))*8
 unlockCommand = "&command=UnlockSafes"
-modifiedURL = inputURL + token + unlockCommand
+test = md5(state=bytes.fromhex(token), count=bits)
+test.update(unlockCommand)
+modifiedURL = "https://project1.ecen4133.org/elpa8934/lengthextension/api?token="+ test.hexdigest() + everythingElse + unlockCommand
 ###
 
 #Prints only the modified URL
 ###
-print("Modified URL to modifiedURL")
+print("Modified URL: ", modifiedURL)
 ###
 

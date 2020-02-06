@@ -9,3 +9,10 @@ print(main_mean)
 #def population_variance(text):
     
 
+# Calcualte the population variance for the english language:
+counter=0
+print(np.square(2))
+for i in frequency_val:
+    counter= counter+ np.square(main_mean -counter)
+
+

@@ -78,6 +78,23 @@ def encrypt_varance(pt, key):
     print("The variance with key ", key, "is", ct_var)
     print("")
 
+def find_len(ct, leng):
+    new_cipher= ct[::leng]
+    new_cipher_var= pop_var(new_cipher)
+    nc_even= new_cipher[::2]
+    nc_odd= new_cipher[1::2]
+    even_var= pop_var(nc_even)
+    odd_var= pop_var(nc_odd)
+    print(stats.mean([even_var, odd_var]))
+    return(stats.mean([even_var, odd_var]))
+
+def find_len2(ct, leng):
+    holder=[]
+    for i in range(2, leng):
+        new_cipher=ct[::i]
+        new_cipher_var=pop_var(new_cipher) 
+        holder.append(new_cipher_var)
+    return(stats.mean(holder))
 
 if __name__ == "__main__":
     # Read ciphertext from stdin
@@ -110,7 +127,31 @@ if __name__ == "__main__":
     #encrypt_varance(sample_plaintext, key2)
     #encrypt_varance(sample_plaintext, key3)
     #encrypt_varance(sample_plaintext, key4)
-    #encrypt_varance(sample_plaintext, key5)
+    encrypt_varance(sample_plaintext, key5)
     #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     #Part4
-    
+    #cipher_text= encrypt(sample_plaintext, key1)
+    #cipher_text_even= cipher_text[::2]
+    #cipher_text_odd= cipher_text[1::2]
+    #even_var= pop_var(cipher_text_even)
+    #odd_var= pop_var(cipher_text_odd)
+    #print("the even variance with key yz is: ", even_var)
+    #print("the odd variance with key yz is: ", odd_var)
+    #print("the mean of these two values is: ", stats.mean([even_var,odd_var]))
+    #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    #part5 
+    cipher= encrypt(sample_plaintext, key5)
+    test= find_len2(cipher, 6)
+    print(test)
+    #two=find_len(cipher,2)
+    #three=find_len(cipher,3)
+    #four=find_len(cipher,4)
+    #five=find_len(cipher,5)
+    #six= find_len(cipher,6)
+    #seven= find_len(cipher,7)
+    #eight= find_len(cipher,8)
+    #nine= find_len(cipher,9)
+    #ten= find_len(cipher,10)
+    #eleven= find_len(cipher,11)
+    #twelve= find_len(cipher,12)
+    #print(stats.mean([two,three,four,five, six, seven, eight, nine, ten, eleven, twelve]))

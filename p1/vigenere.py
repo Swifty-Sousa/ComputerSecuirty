@@ -126,16 +126,55 @@ def solve(ct):
     cesars=[]
     cesars_val=[]
     for i in range(0, key_len-1):
-        slices.append(ct[i:key_len])
+        slices.append(ct[i::key_len-1])
     for k in slices:
         for i in alphabet:
             holder=cesar(k, i)
             cesars_val.append(chi_sqr(holder))
         letter_holder= cesars_val.index(min(cesars_val))
-        print(letter_holder)
+        #print(letter_holder)
         plaintext.append(alphabet[letter_holder])
         cesars_val=[]
-    print(plaintext)
+        hold=""
+    print(hold.join(plaintext))
+
+def solve_1(ct):
+    keylen=find_len(ct)
+    print("key length: ", keylen)
+    #test= [1,2,1,2,1,2,1,2,1,2,1,2,1,2,1]
+    #firsts= test[::2]
+    #print(firsts)
+    #break into bits of length of key
+    first= ct[::2]
+    second= ct[1::2]
+    cesars=[]
+    for i in alphabet:
+        cesars.append(cesar(first, i))
+    #print(cesars, sep='\n')
+    values=[]
+    al=[]
+    for k in cesars:
+        values.append(chi_sqr(k))    
+    key_letter= values.index(min(values))
+    a= ['A','B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y','Z']
+    test=[]
+    for i in range(0, 25):
+        test.append(a[i])
+    print(test)
+    print(*test, sep= '\n')
+    #print(key_letter)
+    #print(*values, sep='\n')
+    #print("")
+    #print(values[2])
+    #print(alphabet[-2])
+
+
+    
+
+
+
+
+
 
 
         
@@ -147,16 +186,17 @@ def solve(ct):
 if __name__ == "__main__":
     # Read ciphertext from stdin
     # Ignore line breaks and spaces, convert to all upper case
-    #cipher = sys.stdin.read().replace("\n", "").replace(" ", "").upper()
+    cipher = sys.stdin.read().replace("\n", "").replace(" ", "").upper()
     sample_plaintext= "ethicslawanduniversitypolicieswarningtodefendasystemyouneedtobeabletothinklikeanattackerandthatincludesunderstandingtechniquesthatcanbeusedtocompromisesecurityhoweverusingthosetechniquesintherealworldmayviolatethelawortheuniversitysrulesanditmaybeunethicalundersomecircumstancesevenprobingforweaknessesmayresultinseverepenaltiesuptoandincludingexpulsioncivilfinesandjailtimeourpolicyineecsisthatyoumustrespecttheprivacyandpropertyrightsofothersatalltimesorelseyouwillfailthecourseactinglawfullyandethicallyisyourresponsibilitycarefullyreadthecomputerfraudandabuseactcfaaafederalstatutethatbroadlycriminalizescomputerintrusionthisisoneofseverallawsthatgovernhackingunderstandwhatthelawprohibitsifindoubtwecanreferyoutoanattorneypleasereviewitsspoliciesonresponsibleuseoftechnologyresourcesandcaenspolicydocumentsforguidelinesconcerningproper"
     sample_plaintext= sample_plaintext.upper()
-    cipher= encrypt(sample_plaintext, key5)
+    #cipher= encrypt(sample_plaintext, key5)
     #key_len= find_len(cipher)
     #print(decrypt(cipher,"temblor"))
     #print("the key length is: ", key_len)
-    test= "aoljhlzhyjpwolypzvulvmaollhysplzaruvduhukzptwslzajpwolyzpapzhafwlvmzbizapabapvujpwolypudopjolhjoslaalypuaolwshpualeapzzopmalkhjlyahpuubtilyvmwshjlzkvduaolhswohila"
-    test= test.upper()
+    #test= "aoljhlzhyjpwolypzvulvmaollhysplzaruvduhukzptwslzajpwolyzpapzhafwlvmzbizapabapvujpwolypudopjolhjoslaalypuaolwshpualeapzzopmalkhjlyahpuubtilyvmwshjlzkvduaolhswohila"
+    #test= test.upper()
     #print(chi_sqr(test))
+    #cipher=encrypt(sample_plaintext,key1)
     solve(cipher)
 
     #################################################################

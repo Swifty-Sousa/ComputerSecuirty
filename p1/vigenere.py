@@ -3,6 +3,7 @@
 import sys
 from collections import Counter
 import statistics as stats
+import math
 key1= "yz"
 key2= "xyz"
 key3= "wxyz"
@@ -99,16 +100,58 @@ def find_len_helper(ct, leng):
         holder.append(new_cipher_var)
     return(stats.mean(holder))
 
+def cesar(pt, k):
+    k=k.upper()
+    k_len = len(k)
+    k_int = [ord(i) for i in k]
+    pt_int= [ord(i) for i in pt]
+    ct= ''
+    for i in range(len(pt)):
+        holder= (pt_int[i] + k_int[i % k_len])%26
+        ct = ct + chr(holder + 65)
+    return ct
+
+def chi_sqr(letters):
+    array=[]
+    for i in alphabet:
+        c_counts= letters.count(i)
+        e_counts= letter_freqs[i]* len(letters)
+        array.append((c_counts-e_counts)**2/e_counts)
+    return(sum(array))
+        
+def solve(ct):
+    key_len=find_len(ct)
+    slices=[]
+    plaintext=[]
+    cesars[]
+    cesars_val=[]
+    for i in range(0, key_len-1):
+        slices.append(ct[i:key_len])
+    for i in slices:
+        holder=i
+        for k in alphabet:
+            cesars.append(cesar(i,k))
+        for k in cesars:
+            cesars_val.append(chi_sqr(k))
+        
+
+
+    
+
+
 if __name__ == "__main__":
     # Read ciphertext from stdin
     # Ignore line breaks and spaces, convert to all upper case
     #cipher = sys.stdin.read().replace("\n", "").replace(" ", "").upper()
     sample_plaintext= "ethicslawanduniversitypolicieswarningtodefendasystemyouneedtobeabletothinklikeanattackerandthatincludesunderstandingtechniquesthatcanbeusedtocompromisesecurityhoweverusingthosetechniquesintherealworldmayviolatethelawortheuniversitysrulesanditmaybeunethicalundersomecircumstancesevenprobingforweaknessesmayresultinseverepenaltiesuptoandincludingexpulsioncivilfinesandjailtimeourpolicyineecsisthatyoumustrespecttheprivacyandpropertyrightsofothersatalltimesorelseyouwillfailthecourseactinglawfullyandethicallyisyourresponsibilitycarefullyreadthecomputerfraudandabuseactcfaaafederalstatutethatbroadlycriminalizescomputerintrusionthisisoneofseverallawsthatgovernhackingunderstandwhatthelawprohibitsifindoubtwecanreferyoutoanattorneypleasereviewitsspoliciesonresponsibleuseoftechnologyresourcesandcaenspolicydocumentsforguidelinesconcerningproper"
     sample_plaintext= sample_plaintext.upper()
-    cipher= encrypt(sample_plaintext, key5)
-    key_len= find_len(cipher)
-    print("the key length is: ", key_len)
-
+    #cipher= encrypt(sample_plaintext, key5)
+    #key_len= find_len(cipher)
+    #print(decrypt(cipher,"temblor"))
+    #print("the key length is: ", key_len)
+    test= "aoljhlzhyjpwolypzvulvmaollhysplzaruvduhukzptwslzajpwolyzpapzhafwlvmzbizapabapvujpwolypudopjolhjoslaalypuaolwshpualeapzzopmalkhjlyahpuubtilyvmwshjlzkvduaolhswohila"
+    test= test.upper()
+    print(chi_sqr(test))
 
     #################################################################
     # first calculate the population variance in the given relitive frequenceies above

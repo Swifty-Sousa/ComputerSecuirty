@@ -1,18 +1,64 @@
-import numpy as np
-plaintext="ethicslawanduniversitypolicieswarningtodefendasystemyouneedtobeabletothinklikeanattackerandthatincludesunderstandingtechniquesthatcanbeusedtocompromisesecurityhoweverusingthosetechniquesintherealworldmayviolatethelawortheuniversitysrulesanditmaybeunethicalundersomecircumstancesevenprobingforweaknessesmayresultinseverepenaltiesuptoandincludingexpulsioncivilfinesandjailtimeourpolicyineecsisthatyoumustrespecttheprivacyandpropertyrightsofothersatalltimesorelseyouwillfailthecourseactinglawfullyandethicallyisyourresponsibilitycarefullyreadthecomputerfraudandabuseactcfaaafederalstatutethatbroadlycriminalizescomputerintrusionthisisoneofseverallawsthatgovernhackingunderstandwhatthelawprohibitsifindoubtwecanreferyoutoanattorneypleasereviewitsspoliciesonresponsibleuseoftechnologyresourcesandcaenspolicydocumentsforguidelinesconcerningproper"
-frequency = { "A": .08167, "B": .01492, "C": .02782, "D": .04253, "E": .12702, "F": .02228, "G": .02015, "H": .06094, "I": .06996, "J": .00153, "K": .00772, "L": .04025, "M": .02406, "N": .06749, "O": .07507, "P": .01929, "Q": .00095, "R": .05987, "S": .06327, "T": .09056, "U": .02758, "V": .00978, "W": .02360, "X": .00150, "Y": .01974, "Z": .00074 }
-frequency_val= frequency.values()
-#print(frequency_val)
-main_mean=(sum(frequency_val)/len(frequency_val))
-print(main_mean)
+import math 
 
-#def population_variance(text):
-    
+letter_freqs = {
+    'A': 0.08167,
+    'B': 0.01492,
+    'C': 0.02782,
+    'D': 0.04253,
+    'E': 0.12702,
+    'F': 0.02228,
+    'G': 0.02015,
+    'H': 0.06094,
+    'I': 0.06966,
+    'J': 0.00153,
+    'K': 0.00772,
+    'L': 0.04025,
+    'M': 0.02406,
+    'N': 0.06749,
+    'O': 0.07507,
+    'P': 0.01929,
+    'Q': 0.00095,
+    'R': 0.05987,
+    'S': 0.06327,
+    'T': 0.09056,
+    'U': 0.02758,
+    'V': 0.00978,
+    'W': 0.02361,
+    'X': 0.00150,
+    'Y': 0.01974,
+    'Z': 0.00074
+}
 
-# Calcualte the population variance for the english language:
-counter=0
-print(np.square(2))
-for i in frequency_val:
-    counter= counter+ np.square(main_mean -counter)
+alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+def cesar(pt, k):
+    k=k.upper()
+    k_len = len(k)
+    k_int = [ord(i) for i in k]
+    pt_int= [ord(i) for i in pt]
+    ct= ''
+    for i in range(len(pt)):
+        holder= (pt_int[i] + k_int[i % k_len])%26
+        ct = ct + chr(holder + 65)
+    return ct
 
+def chi_sqr(letters):
+    array=[]
+    for i in alphabet:
+        c_counts= letters.count(i)
+        e_counts= letter_freqs[i]* len(letters)
+        array.append(((c_counts-e_counts)**2)/e_counts)
+    return(sum(array))
+test="aoljhlzhyjpwolypzvulvmaollhysplzaruvduhukzptwslzajpwolyzpapzhafwlvmzbizapabapvujpwolypudopjolhjoslaalypuaolwshpualeapzzopmalkhjlyahpuubtilyvmwshjlzkvduaolhswohila"
+#test= test.upper()
 
+c_counts= test.count('A')
+print(c_counts)
+e_counts= letter_freqs['A']*len(test)
+print(e_counts)
+num=(math.pow(c_counts-e_counts,2))/e_counts
+print(num)
+        
+
+test= "aoljhlzhyjpwolypzvulvmaollhysplzaruvduhukzptwslzajpwolyzpapzhafwlvmzbizapabapvujpwolypudopjolhjoslaalypuaolwshpualeapzzopmalkhjlyahpuubtilyvmwshjlzkvduaolhswohila"
+test= test.upper()
+test2= "AAA"

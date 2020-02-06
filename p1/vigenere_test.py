@@ -48,16 +48,14 @@ def chi_sqr(letters):
         e_counts= letter_freqs[i]* len(letters)
         array.append(((c_counts-e_counts)**2)/e_counts)
     return(sum(array))
-test="aoljhlzhyjpwolypzvulvmaollhysplzaruvduhukzptwslzajpwolyzpapzhafwlvmzbizapabapvujpwolypudopjolhjoslaalypuaolwshpualeapzzopmalkhjlyahpuubtilyvmwshjlzkvduaolhswohila"
-#test= test.upper()
+test="aoljhlzhyjpwolypzvulvmaollhysplzaruvduhukzptwslzajpwolyzpapzhafwlvmzbizapabapvujpwolypudopjolhjoslaalypuaolwshpualeapzzopmalkhjlyahpuubtilyvmwshjlzkvduaolhswohilaaoljhlzhyjpwolypzvulvmaollhysplzaruvduhukzptwslzajpwolyzpapzhafwlvmzbizapabapvujpwolypudopjolhjoslaalypuaolwshpualeapzzopmalkhjlyahpuubtilyvmwshjlzkvduaolhswohilaaoljhlzhyjpwolypzvulvmaollhysplzaruvduhukzptwslzajpwolyzpapzhafwlvmzbizapabapvujpwolypudopjolhjoslaalypuaolwshpualeapzzopmalkhjlyahpuubtilyvmwshjlzkvduaolhswohila"
+test= test.upper()
+cesar_vals=[]
+for i in alphabet:
+    holder=cesar(test, i)
+    cesar_vals.append(chi_sqr(holder))
 
-c_counts= test.count('A')
-print(c_counts)
-e_counts= letter_freqs['A']*len(test)
-print(e_counts)
-num=(math.pow(c_counts-e_counts,2))/e_counts
-print(num)
-        
+print(cesar_vals.index(min(cesar_vals)))
 
 test= "aoljhlzhyjpwolypzvulvmaollhysplzaruvduhukzptwslzajpwolyzpapzhafwlvmzbizapabapvujpwolypudopjolhjoslaalypuaolwshpualeapzzopmalkhjlyahpuubtilyvmwshjlzkvduaolhswohila"
 test= test.upper()

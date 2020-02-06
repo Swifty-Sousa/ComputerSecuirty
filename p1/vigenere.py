@@ -8,7 +8,7 @@ key1= "yz"
 key2= "xyz"
 key3= "wxyz"
 key4= "vwxyz"
-key5= "AsvwBsgyCwdcs"
+key5= "AAAAA"
 #taken from Wikipedia
 letter_freqs = {
     'A': 0.08167,
@@ -86,7 +86,7 @@ def find_len(ct):
     variances=[]
     for i in range(2,14):
         variances.append(find_len_helper(ct,i)) 
-    print(*variances, sep='\n')
+    #print(*variances, sep='\n')
     for i in variances:
             if i>=0.001:
                 #we add two because the list starts with a key lenth of two, therefore a key of length 6 will have index 4 in the list
@@ -121,18 +121,23 @@ def chi_sqr(letters):
         
 def solve(ct):
     key_len=find_len(ct)
-    slices=[]
+    slices=[ct]
     plaintext=[]
-    cesars[]
+    cesars=[]
     cesars_val=[]
     for i in range(0, key_len-1):
         slices.append(ct[i:key_len])
-    for i in slices:
-        holder=i
-        for k in alphabet:
-            cesars.append(cesar(i,k))
-        for k in cesars:
-            cesars_val.append(chi_sqr(k))
+    for k in slices:
+        for i in alphabet:
+            holder=cesar(k, i)
+            cesars_val.append(chi_sqr(holder))
+        letter_holder= cesars_val.index(min(cesars_val))
+        print(letter_holder)
+        plaintext.append(alphabet[letter_holder])
+        cesars_val=[]
+    print(plaintext)
+
+
         
 
 
@@ -145,13 +150,14 @@ if __name__ == "__main__":
     #cipher = sys.stdin.read().replace("\n", "").replace(" ", "").upper()
     sample_plaintext= "ethicslawanduniversitypolicieswarningtodefendasystemyouneedtobeabletothinklikeanattackerandthatincludesunderstandingtechniquesthatcanbeusedtocompromisesecurityhoweverusingthosetechniquesintherealworldmayviolatethelawortheuniversitysrulesanditmaybeunethicalundersomecircumstancesevenprobingforweaknessesmayresultinseverepenaltiesuptoandincludingexpulsioncivilfinesandjailtimeourpolicyineecsisthatyoumustrespecttheprivacyandpropertyrightsofothersatalltimesorelseyouwillfailthecourseactinglawfullyandethicallyisyourresponsibilitycarefullyreadthecomputerfraudandabuseactcfaaafederalstatutethatbroadlycriminalizescomputerintrusionthisisoneofseverallawsthatgovernhackingunderstandwhatthelawprohibitsifindoubtwecanreferyoutoanattorneypleasereviewitsspoliciesonresponsibleuseoftechnologyresourcesandcaenspolicydocumentsforguidelinesconcerningproper"
     sample_plaintext= sample_plaintext.upper()
-    #cipher= encrypt(sample_plaintext, key5)
+    cipher= encrypt(sample_plaintext, key5)
     #key_len= find_len(cipher)
     #print(decrypt(cipher,"temblor"))
     #print("the key length is: ", key_len)
     test= "aoljhlzhyjpwolypzvulvmaollhysplzaruvduhukzptwslzajpwolyzpapzhafwlvmzbizapabapvujpwolypudopjolhjoslaalypuaolwshpualeapzzopmalkhjlyahpuubtilyvmwshjlzkvduaolhswohila"
     test= test.upper()
-    print(chi_sqr(test))
+    #print(chi_sqr(test))
+    solve(cipher)
 
     #################################################################
     # first calculate the population variance in the given relitive frequenceies above

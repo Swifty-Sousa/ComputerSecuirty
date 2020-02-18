@@ -1,0 +1,30 @@
+Christian F. Sousa
+
+1.1:
+a) gbmodp-
+	0x8000, calculated with as pow(g,b,p) with b=15
+
+b) gamodp * gbmodp-
+	0x4c5a386459ac7c73b2fe8e01e2e7ef2dc17a456300c3e4fee2abb54c2c90693cfa81764688350d86504b66797c80de8effcd382480d9bb82587d4dad9479ec056685103e99ea45c8725ff489bea04131c305d823023833e0d584e17ce429fafa10e16bdabc0a7bb90bc0e849bd8b19823cc8cb5b4756eba136c15597bb6cf4ab694b81c49159fce9131ba78b61f55008388815a4b386afaa3aef40f80a38608f20f307950b4566acee3cf34d16efcd6228545722b401a268a4eb02a2308bade6ecb155b1f44f9f601362cc6ca7cb20e17e8bd9267df26d325e5337e33864a7018ec26e620b348e63d9de24eeb25e95b05d5fcd9d3c35306e3f8ac9ce290bc3a70000.
+
+
+1.2:
+	I do not believe it is possible to calculate a, we can set up an equations where g^amodp is set equal to the long hex string it produces. However if we attempt to solve this we run into the issue of the reverse module which i cannot find a way to solve.
+    
+1.3:
+    -g: 0x2
+    -p: 00d4acd08c036d3d12c67261a8c112df3cea36c25e169d8794d23e458bfe9cb66a43df439f4369c25f062aece1e875c71c61621f439983860964e9758943fd88ccad05bf278221ff389c6028fdfa5ba19cd3f2f741af591b5a92c7a653e9c9a5b1a6ae20ecb102e7664977132a221c39f4164bb873a95d7f7ae2ca0acb461a436faf72f99a54cd476708283fd0a5dfa3cd82e1b6e421b79012eb31096ef8a6d395e194822e5a5bc5e62a45244a24908e567e5fec1b6481eb6fa4220d9146b55b5274571b183e9bb0f786583e11b167fd8c2f2faaf981193e364a277649fccc69f582046b2bac16ed942f5736df43060a865987386c7ad904c20111f72eb4a13d63
+2.1:
+    - I am able to tell what the message says. The message says "Attack at 6mp". I found this through brute force.
+    Because there are only 24 hour in a day we can test by encrypting the text 24 time each time with a different hour value. Then 
+    compare these to the cipher text we have. When the text matches one of our generated texts
+    then we know that is the correct message.
+
+2.2:
+    - Alice should use Optical Asymmetric Encryption padding such that even if the same message is ecrypted twice,
+    the cipher text will not be identical.
+
+2.3:
+    - the command used to create this text is: echo -n "chso8299" | openssl rsautl -raw -pubin -oaep -encrypt -inkey rsa-pub.pem | xxd -p -c 256
+    - The output cipher is:02bff68ae985ff995c331f7aeaa801d867451e9565c1868fe8b5a8b2e02d94ba49dd38d36e854b5f4c8117ecd5c501ba5bf382b430cf8f973b36de2791c78a16e6b86a16279719d7c3a25d108a16e547bbcd71a77184c4263bd86989112ef1ead30d5d46f5fe3c5e4c3a6e858b9cd4f21667a6cff3a52c27a020e449221d4b5d8341b4d012ae538f1eb4e1c7091826275095a10d5ceed57cc3bc5f0451c196cd4c80f9b3de21b23253b944dfcaa79b167ffd4604b24fedf2b8e5c75558865c49a5c66ea1153c418ec664d36fc1651c1692c3fdb0f4e721422d2c0bd80bf41e876550fe08168aa1af45dab2141435965174e75ec06682392db38d612b258bfd22
+

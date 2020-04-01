@@ -4,12 +4,16 @@
 
 2. What type of network does this appear to be (e.g., a large corporation, an ISP backbone,
 etc.)? Point to evidence from the trace that supports this.
+	I think the capture is a personal network or maybe a small business because many 
+	websites accessed are simple and for personal use, such as google, bing, amazon, 
+	yahoo, etc. Many requests are coming from the same IP address, which may indicate 
+	single use or a shared router. 
 
 3. One of the clients connects to a telnet server during the trace.
 (a) What is the DNS hostname of the server it connects to?
 	http://www.saix.net
 (b) Based on the packet capture, what’s one major vulnerability of the telnet protocol?
-	The username and password are passed in plaintext.
+	The username and password are in plaintext.
 (c) What is a command run on the telnet server?
 	After entering username and password, the "show ip bgp" command is run. 
 (d) Name a network protocol that can be used in place of telnet to provide secure remote
@@ -20,6 +24,8 @@ login.
 (a) What is the domain name of the site the client is connecting to?
 	www.yahoo.com
 (b) Is there any way the HTTPS server can protect against the leak of information in (a)?
+	No, because DNS requests are cleartext, however the contents path portion of the 
+	URL is not leaked (But the length of the URL can be deduced).
 (c) During the TLS handshake, the client provides a list of supported cipher suites. List
 the cipher suites and name the crypto algorithms used for each.
 	Cipher Suites (23 suites)
@@ -48,14 +54,26 @@ the cipher suites and name the crypto algorithms used for each.
     	Cipher Suite: TLS_RSA_WITH_RC4_128_MD5 (0x0004)
 
 (d) Are any of these cipher suites worrisome from a security or privacy perspective? Why?
+	The cipher suites including RC4 are insecure, as RC4 has known vulnerabilities and 
+	can be feasibly cracked. Cipher suites including Camellia are not supported by TLS  
+	1.3. Depending on the security standards of the interaction, 3DES may also be 
+	insufficiently secure, and AES is a much better choice. 
 (e) What cipher suite does the server choose for the connection?
 	Cipher Suite: TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (0xc02f)
 
 5. One of the clients is trying to use a search engine.
 (a) Name the domain of the first search engine used.
+	www.bing.com
 (b) What is insecure about the search engine?
+	When the user types in the search engine, it sent GET requests for suggestions 
+	based on the previously typed letters. Those get requests for suggestions can be 
+	used to see what the user searched. 
 (c) Name something the user searched for
+	"is my search engine secure"
+	"can people read what i search online"
 (d) How can users protect themselves against this type of attack?
+	Turn off the search suggestions
 
 6. What is the maximum number of years in jail that you could face under 18 USC § 2511 for
 intercepting traffic on an encrypted WiFi network without permission?
+	Five years

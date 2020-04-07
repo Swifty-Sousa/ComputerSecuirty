@@ -1,3 +1,8 @@
+ECEN 4133
+Project 3 Network Security
+Part 1
+Liz Parker and Christian Sousa
+
 1. Multiple hosts sent packets on the local network. What are their MAC and IP addresses?
 	IP: 10.0.2.15 MAC: 08:00:27:da:f7:f5
 	IP: 10.0.2.3  MAC: 52:54:00:12:35:02
